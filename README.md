@@ -1,34 +1,122 @@
-# resume
+# Resume Builder
 
-## Project setup
-```
+A modern, feature-rich resume building application built with Vue.js and TypeScript.
+
+## Overview
+
+Resume Builder is a web application that helps users create professional resumes with ease. The application offers multiple templates, a user-friendly editor, and the ability to export resumes to various formats including PDF.
+
+## Features
+
+- **Document Management**: Create, save, and manage multiple resume documents
+- **Template Selection**: Choose from various professionally designed resume templates
+- **User-friendly Editor**: Intuitive interface for editing different resume sections:
+  - Personal Information
+  - Profile/Summary
+  - Work Experience
+  - Education
+  - Skills
+  - Languages
+  - Hobbies
+  - References
+- **Live Preview**: Real-time preview of your resume as you edit
+- **Export Options**: Export your resume to PDF and other formats
+- **Responsive Design**: Works on desktop and mobile devices
+
+## Technology Stack
+
+- **Frontend Framework**: Vue.js 3 with Composition API
+- **Type System**: TypeScript
+- **State Management**: Vuex/Pinia
+- **UI Framework**: Vuetify 3
+- **Routing**: Vue Router
+- **Form Validation**: Vee-validate with Yup
+- **Internationalization**: Vue-i18n
+- **PDF Generation**: html2pdf.js
+- **Testing**: Jest (Unit), Cypress (E2E)
+- **Build Tools**: Vue CLI
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone [repository-url]
+
+# Navigate to the project directory
+cd resume
+
+# Install dependencies
 npm install
+# or
+yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
+### Development
+
+```bash
+# Start development server
 npm run serve
+# or
+yarn serve
 ```
 
-### Compiles and minifies for production
-```
+### Building for Production
+
+```bash
+# Create production build
 npm run build
+# or
+yarn build
 ```
 
-### Run your unit tests
-```
+### Testing
+
+```bash
+# Run unit tests
 npm run test:unit
-```
+# or
+yarn test:unit
 
-### Run your end-to-end tests
-```
+# Run end-to-end tests
 npm run test:e2e
+# or
+yarn test:e2e
 ```
 
-### Lints and fixes files
+## Project Structure
+
 ```
-npm run lint
+public/            # Static assets
+src/
+  assets/          # Images and static resources
+  components/      # Vue components
+    Documents/     # Document management components
+    Editor/        # Resume editor components
+    Export/        # Export functionality components
+    Templates/     # Template selection and preview components
+  router/          # Vue Router configuration
+  store/           # Vuex/Pinia store modules
+  types/           # TypeScript type definitions
+  views/           # Main application views
+  App.vue          # Root component
+  main.ts          # Application entry point
+tests/
+  e2e/             # Cypress end-to-end tests
+  unit/            # Jest unit tests
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## License
+
+[Specify your license here]
+
+## Acknowledgments
+
+- All contributors to this project
+- Open source libraries used in this project
