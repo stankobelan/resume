@@ -169,6 +169,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useResumeStore } from "@/store/resumeStore";
 import { useTemplateStore } from "@/store/templateStore";
 import TemplatePreview from "@/components/Templates/TemplatePreview.vue";
+import { escapeHtml } from "@/utils/security";
 
 // Initialize store and router
 const resumeStore = useResumeStore();
@@ -219,13 +220,6 @@ const setFont = (fontId: string) => {
 
 const setLayout = (layoutId: string) => {
   templateStore.setLayout(layoutId);
-};
-
-// Helper function to escape HTML to prevent XSS
-const escapeHtml = (text: string): string => {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
 };
 
 const printResume = () => {

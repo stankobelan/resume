@@ -46,6 +46,7 @@
 import { ref, computed, defineExpose } from "vue";
 import { Resume } from "@/store/resumeStore";
 import html2pdf from "html2pdf.js";
+import { escapeHtml } from "@/utils/security";
 
 // Define props and emits
 const props = defineProps<{
@@ -140,13 +141,6 @@ const exportToPDF = async () => {
       previewContainer.style.overflow = originalOverflow;
     }
   }
-};
-
-// Helper function to escape HTML to prevent XSS
-const escapeHtml = (text: string): string => {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
 };
 
 const printResume = () => {
