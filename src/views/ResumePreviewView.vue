@@ -221,6 +221,13 @@ const setLayout = (layoutId: string) => {
   templateStore.setLayout(layoutId);
 };
 
+// Helper function to escape HTML to prevent XSS
+const escapeHtml = (text: string): string => {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+};
+
 const printResume = () => {
   const element = document.getElementById("resume-preview");
 
@@ -237,8 +244,10 @@ const printResume = () => {
   }
 
   // Create simplified HTML for printing
+  // Escape fullName to prevent XSS attacks
+  const safeTitle = escapeHtml(resume.value?.fullName || "Resume");
   let html = `<!DOCTYPE html><html><head>
-    <title>${resume.value?.fullName || "Resume"}</title>
+    <title>${safeTitle}</title>
     <style>body{margin:0;padding:20px}@media print{body{padding:0}}</style>
     </head><body>
     ${element.innerHTML}

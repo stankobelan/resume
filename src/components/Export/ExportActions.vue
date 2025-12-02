@@ -142,6 +142,13 @@ const exportToPDF = async () => {
   }
 };
 
+// Helper function to escape HTML to prevent XSS
+const escapeHtml = (text: string): string => {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+};
+
 const printResume = () => {
   const element = document.getElementById("resume-preview");
 
@@ -158,8 +165,10 @@ const printResume = () => {
   }
 
   // Simplified HTML creation to avoid parsing issues
+  // Escape fullName to prevent XSS attacks
+  const safeTitle = escapeHtml(props.resume.fullName || "Resume");
   let html = "<!DOCTYPE html><html><head>";
-  html += "<title>" + (props.resume.fullName || "Resume") + "</title>";
+  html += "<title>" + safeTitle + "</title>";
   html +=
     "<style>body{margin:0;padding:20px}@media print{body{padding:0}}</style>";
   html += "</head><body>";
