@@ -46,6 +46,7 @@
 import { ref, computed, defineExpose } from "vue";
 import { Resume } from "@/store/resumeStore";
 import html2pdf from "html2pdf.js";
+import { escapeHtml } from "@/utils/security";
 
 // Define props and emits
 const props = defineProps<{
@@ -158,8 +159,10 @@ const printResume = () => {
   }
 
   // Simplified HTML creation to avoid parsing issues
+  // Escape fullName to prevent XSS attacks
+  const safeTitle = escapeHtml(props.resume.fullName || "Resume");
   let html = "<!DOCTYPE html><html><head>";
-  html += "<title>" + (props.resume.fullName || "Resume") + "</title>";
+  html += "<title>" + safeTitle + "</title>";
   html +=
     "<style>body{margin:0;padding:20px}@media print{body{padding:0}}</style>";
   html += "</head><body>";

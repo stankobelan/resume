@@ -169,6 +169,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useResumeStore } from "@/store/resumeStore";
 import { useTemplateStore } from "@/store/templateStore";
 import TemplatePreview from "@/components/Templates/TemplatePreview.vue";
+import { escapeHtml } from "@/utils/security";
 
 // Initialize store and router
 const resumeStore = useResumeStore();
@@ -237,8 +238,10 @@ const printResume = () => {
   }
 
   // Create simplified HTML for printing
+  // Escape fullName to prevent XSS attacks
+  const safeTitle = escapeHtml(resume.value?.fullName || "Resume");
   let html = `<!DOCTYPE html><html><head>
-    <title>${resume.value?.fullName || "Resume"}</title>
+    <title>${safeTitle}</title>
     <style>body{margin:0;padding:20px}@media print{body{padding:0}}</style>
     </head><body>
     ${element.innerHTML}
